@@ -42,25 +42,25 @@ timeInterval;
     this.ms = 0;
   }
 
-  ngOnChanges(changes: SimpleChange){
-    for(let propName in changes){
-      if(propName == 'inputData'){
+  // ngOnChanges(changes: SimpleChange){
+  //   for(let propName in changes){
+  //     if(propName == 'inputData'){
 
-        switch(changes[propName].currentValue){
-          case  'start' :
-          this.timeStart();
-            break;
-          case 'stop':
-            this.timeStop();
-            break;
-          case 'reset':
-            this.timeReset();
-            break;
-        }
-      }
-    }
-    console.log(changes);
-  }
+  //       switch(changes[propName].currentValue){
+  //         case  'start' :
+  //         this.timeStart();
+  //           break;
+  //         case 'stop':
+  //           this.timeStop();
+  //           break;
+  //         case 'reset':
+  //           this.timeReset();
+  //           break;
+  //       }
+  //     }
+  //   }
+  //   console.log(changes);
+  // }
 
   ngOnInit(): void {
 
