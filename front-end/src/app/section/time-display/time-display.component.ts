@@ -1,3 +1,4 @@
+import { Input, SimpleChange } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,14 +9,57 @@ import { Component, OnInit } from '@angular/core';
 export class TimeDisplayComponent implements OnInit {
 
 
-  test = 1;
+@Input()inputData : string; 
+
+
+min : number = 0
+sec: number = 0
+ms : number = 0
+
+
+
+
+timeInterval;
 
   constructor() { 
-    setInterval(() => {
+    console.log(this.inputData);
+    // setInterval(() => {
+    //   this.test++; //TimeDisplayComponent의 this
+    // }, 1000);
+  }
 
-      this.test++; //TimeDisplayComponent의 this
+  timeStart(){
+   this.timeInterval = setInterval(()=>{
+    this.ms++;
+    }, 10);
+  }
+  timeStop(){
+   clearInterval(this.timeInterval);
+  }
 
-    }, 1000);
+  timeReset(){
+    this.timeStop();
+    this.ms = 0;
+  }
+
+  ngOnChanges(changes: SimpleChange){
+    for(let propName in changes){
+      if(propName == 'inputData'){
+
+        switch(changes[propName].currentValue){
+          case  'start' :
+          this.timeStart();
+            break;
+          case 'stop':
+            this.timeStop();
+            break;
+          case 'reset':
+            this.timeReset();
+            break;
+        }
+      }
+    }
+    console.log(changes);
   }
 
   ngOnInit(): void {
